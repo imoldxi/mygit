@@ -18,11 +18,11 @@ public class DetailController {
 
     /**
      *根据年份、月份和yonghuId查询该用户当月的总收入和总支出
-     * @param detailParam
+     * @param
      * @return
      */
     @RequestMapping(value = "/queryDetails",method = RequestMethod.GET)
-    public MsgResult query(DetailParam detailParam){
+    public MsgResult query(@RequestBody DetailParam detailParam){
         log.info("前台传来的参数: 用户ID"+detailParam.getConId()+"  年份： "+detailParam.getYear()+"  月份："+detailParam.getMonth());
         MsgResult msgResult = detailService.querydetails(detailParam);
         return msgResult;
@@ -32,15 +32,24 @@ public class DetailController {
 
     /**
      * 查询并返回明细
-     * @param detailParam
+     * @param
      * @return
      */
     @RequestMapping(value = "/home",method = RequestMethod.GET)
-    public MsgResult queryHome(DetailParam detailParam){
-        log.info("前台传来的参数: 用户ID"+detailParam.getConId()+"  年份： "+detailParam.getYear()+"  月份："+detailParam.getMonth());
+    public MsgResult queryHome(  DetailParam detailParam){
+        log.info("Controller前台传来的参数: 用户ID:   "+detailParam.getConId()+"  年份： "+detailParam.getYear()+"  月份："+detailParam.getMonth());
         MsgResult msgResult = detailService.queryHome(detailParam);
         return msgResult;
     }
+
+  /*  @RequestMapping(value = "/home",method = RequestMethod.GET)
+    public MsgResult queryHome(@RequestParam(value = "conId")int conId,
+                               @RequestParam(value = "year")int year,
+                               @RequestParam(value = "month")int month){
+        MsgResult msgResult = detailService.queryHome(conId, year, month);
+        return msgResult;
+    }*/
+
 
     /**
      * 模糊查询
@@ -55,5 +64,22 @@ public class DetailController {
         return msgResult;
     }
 
+
+
+
+
+    /*  /**
+     *根据年份、月份和yonghuId查询该用户当月的总收入和总支出
+     * @param detailParam
+     * @return
+     */
+    /*@RequestMapping(value = "/queryDetails",method = RequestMethod.GET)
+    public MsgResult query(@RequestParam(value = "conId") int conId,
+                           @RequestParam(value = "year") int year,
+                           @RequestParam(value = "month") int month, DetailParam detailParam){
+        log.info("前台传来的参数: 用户ID"+detailParam.getConId()+"  年份： "+detailParam.getYear()+"  月份："+detailParam.getMonth());
+        MsgResult msgResult = detailService.querydetails(detailParam);
+        return msgResult;
+    }*/
 
 }

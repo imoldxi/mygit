@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -32,18 +33,16 @@ public interface DetailMapper extends BaseMapper<Detail> {
 
     /**
      * 通过用户id conId，年份year，月份month查询当月流水账
+     * @return
+     * @param conId
      * @param year
      * @param month
-     * @param conId
-     * d.detRemark,d.detSort,d.detAmount,d.detTime,
-     * @return
      */
-    @Select("SELECT c.contIcon,c.contName,d.* FROM detail d,consumptiontype c " +
-            "WHERE c.contId=d.conId and MONTH(detTime)=#{month} AND YEAR(detTime)=#{year} " +
-            "AND conId=#{conId} AND detStatus=1")
-    public List<DetailHome> queryHome(@Param("year") int year,
-                                      @Param("month") int month,
-                                      @Param("conId") int conId);
+    @Select("select c.conName, d.detId, cpt.contIcon, d.detRemark, d.detSort, d.detAmount, d.detTime, cpt.contName  from consumer c, consumptiontype cpt, detail d " +
+            "where c.conId=d.conId and d.contId=cpt.contId and MONTH(detTime)=#{month} AND YEAR(detTime)=#{year} AND c.conId=#{conId} AND d.detStatus=1")
+    public List<DetailHome> queryHome(@Param("conId") int conId,
+                                      @Param("year")int year,
+                                      @Param("month")int month);
 
     @Select("SELECT * FROM detail WHERE detRemark LIKE '%${markName}%' ORDER BY contId ")
     public List<Detail> fuzzySearch(@Param("markName") String markName);

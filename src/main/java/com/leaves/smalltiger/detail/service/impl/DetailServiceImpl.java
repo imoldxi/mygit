@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -33,7 +34,7 @@ public class DetailServiceImpl implements DetailService {
     @Override
     public MsgResult querydetails(DetailParam detailParam) {
         MsgResult result = new MsgResult();
-        log.info("传来的年份是:"+detailParam.getYear()+" 月份:"+detailParam.getMonth()+" 用户ID是："+detailParam.getConId());
+        log.info("传来的年份是:  "+detailParam.getYear()+" 月份:"+detailParam.getMonth()+" 用户ID是："+detailParam.getConId());
         List<DataResult> details=detailMapper.queryDetails(detailParam.getYear(),detailParam.getMonth(),detailParam.getConId());
         if (!details.isEmpty()){
 //            将查询到总和的数据保留小数位，整数保留一位，非整数保留两位小数
@@ -63,18 +64,25 @@ public class DetailServiceImpl implements DetailService {
         return result;
     }
 
+   /* @Override
+    public MsgResult queryHome(int conId, int year, int month) {
+        List<DetailHome> detailHomes = detailMapper.queryHome(conId, year, month);
+        return new MsgResult(200,"查询成功",detailHomes);
+
+    }*/
+
     /**
-     * 首页显示明细
+     * 首页加载当前月流水账
      * @param detailParam
      * @return
      */
     @Override
     public MsgResult queryHome(DetailParam detailParam) {
 //        打印传来的参数值
-        log.info("传来的年份是:"+detailParam.getYear()+" 月份:"+detailParam.getMonth()+" 用户ID是："+detailParam.getConId());
+        log.info("ServiceImpl传来的年份是:"+detailParam.getYear()+" 月份:"+detailParam.getMonth()+" 用户ID是："+detailParam.getConId());
         MsgResult result = new MsgResult();
 //        把查询到的数据放到list里
-        List<DetailHome> detailHomes = detailMapper.queryHome(detailParam.getYear(), detailParam.getMonth(), detailParam.getConId());
+        List<DetailHome> detailHomes = detailMapper.queryHome(detailParam.getConId(), detailParam.getYear(), detailParam.getMonth());
         for (DetailHome dataResult:detailHomes){
                 log.info(dataResult+"打印查询结果");
         }
@@ -92,6 +100,7 @@ public class DetailServiceImpl implements DetailService {
         result.setMsg("查询失败");
         return result;
     }
+
     //################################后端方法##########################################
 
     @Override

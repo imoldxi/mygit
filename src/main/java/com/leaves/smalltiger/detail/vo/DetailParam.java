@@ -12,8 +12,8 @@ import java.util.Date;
 @ToString
 @Data
 public class DetailParam {
-    private  int year;
     private  int conId;
+    private  int year;
     private  int month;
 
 

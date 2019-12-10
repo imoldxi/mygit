@@ -10,7 +10,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class ConsumerInsert {
-    //conId, conName, password, conAvatar, conSex, conTel, conMail
+
     private Integer conId;
 
     private String conName;

@@ -89,11 +89,16 @@ public class SmalltigerApplicationTests {
      */
     @Test
     public void  queryHome(){
-        List<DetailHome> detailHomes = detailMapper.queryHome(2019, 12, 1);
-        for (DetailHome detailHome:detailHomes){
-            log.info(detailHome+"    打印结果");
-        }
-        log.info(detailHomes.size()+"打印测试数据");
+        DetailParam detailParam = new DetailParam();
+        detailParam.setConId(520131417);
+        detailParam.setYear(2019);
+        detailParam.setMonth(12);
+        MsgResult msgResult = detailService.queryHome(detailParam);
+
+//        for (DetailHome detailHome:detailHomes){
+//            log.info(detailHome+"    打印结果");
+//        }
+        log.info(msgResult+"打印测试数据");
     }
 
     /**
