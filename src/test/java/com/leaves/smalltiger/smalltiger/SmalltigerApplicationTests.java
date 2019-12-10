@@ -13,6 +13,7 @@ import com.leaves.smalltiger.comsumptiontype.mapper.ConsumptionTypeMapper;
 import com.leaves.smalltiger.consumer.mapper.ConsumerMapper;
 import com.leaves.smalltiger.consumer.service.ConsumerService;
 import com.leaves.smalltiger.consumer.service.impl.ConsumerServiceImpl;
+import com.leaves.smalltiger.consumer.vo.ConsumerInsert;
 import com.leaves.smalltiger.consumer.vo.ConsumerParam;
 import com.leaves.smalltiger.detail.mapper.DetailMapper;
 import com.leaves.smalltiger.detail.service.DetailService;
@@ -154,6 +155,14 @@ public class SmalltigerApplicationTests {
     public void fuzzySearch(){
         MsgResult result = detailService.fuzzySearch("工资", 1, 10);
             log.info(result.toString());
+    }
+
+    @Test
+    public  void addConsumer(){
+        /*588, '小强', '654', 'jhb', 1, '56465', 'asd@163.com'*/
+        ConsumerInsert consumerInsert = new ConsumerInsert(77, "小强", "54", "jhb", 1, "56465", "asd@163.com");
+        consumers.addConsumer(consumerInsert);
+        log.info("测试数据是#############################"+consumers.toString());
     }
 
 

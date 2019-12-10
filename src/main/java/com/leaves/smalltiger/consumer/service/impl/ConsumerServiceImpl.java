@@ -6,6 +6,7 @@ import com.leaves.smalltiger.common.po.Consumer;
 import com.leaves.smalltiger.common.utils.MsgResult;
 import com.leaves.smalltiger.consumer.mapper.ConsumerMapper;
 import com.leaves.smalltiger.consumer.service.ConsumerService;
+import com.leaves.smalltiger.consumer.vo.ConsumerInsert;
 import com.leaves.smalltiger.consumer.vo.ConsumerParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -167,6 +168,36 @@ public class ConsumerServiceImpl implements ConsumerService {
 
         msgResult.setStatusCode(201);
         msgResult.setMsg("修改失败");
+        return msgResult;
+    }
+
+    /**
+     * 新增consumer
+     * @param consumerInsert
+     * @return
+     */
+
+    @Override
+    public MsgResult addConsumer(ConsumerInsert consumerInsert) {
+        Consumer consumer = new Consumer();
+        consumer.setConId(consumerInsert.getConId());
+        consumer.setConName(consumerInsert.getConName());
+        consumer.setPassword(consumerInsert.getPassword());
+        consumer.setConAvatar(consumerInsert.getConAvatar());
+        consumer.setConSex(consumerInsert.getConSex());
+        consumer.setConTel(consumerInsert.getConTel());
+        consumer.setConMail(consumerInsert.getConMail());
+        int i = consumerMapper.insertSelective(consumer);
+        MsgResult msgResult = new MsgResult();
+        if (i>0){
+            msgResult.setStatusCode(200);
+            msgResult.setMsg("新增成功");
+            msgResult.setData(consumer);
+            return msgResult;
+        }
+
+        msgResult.setStatusCode(201);
+        msgResult.setMsg("新增失败");
         return msgResult;
     }
 }

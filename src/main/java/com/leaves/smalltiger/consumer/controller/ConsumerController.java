@@ -4,6 +4,7 @@ import com.leaves.smalltiger.common.po.Consumer;
 import com.leaves.smalltiger.common.utils.MsgResult;
 import com.leaves.smalltiger.consumer.mapper.ConsumerMapper;
 import com.leaves.smalltiger.consumer.service.ConsumerService;
+import com.leaves.smalltiger.consumer.vo.ConsumerInsert;
 import com.leaves.smalltiger.consumer.vo.ConsumerParam;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
@@ -94,6 +95,21 @@ public class ConsumerController {
     public MsgResult updateConsumerById(@RequestBody ConsumerParam consumerParam){
         //consumerService.updateConsumerById(conId);
         MsgResult msgResult = consumerService.updateConsumerById(consumerParam);
+        return msgResult;
+
+    }
+/**
+ * @author James
+ * @date 2019/12/10 17:33
+ */
+    /**
+     * 新增
+     * @param consumerInsert
+     * @return
+     */
+    @RequestMapping(value = "/addConsumer",method = RequestMethod.POST)
+    public  MsgResult insertConsumer(ConsumerInsert consumerInsert){
+        MsgResult msgResult = consumerService.addConsumer(consumerInsert);
         return msgResult;
     }
 

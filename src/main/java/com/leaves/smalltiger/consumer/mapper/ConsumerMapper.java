@@ -4,10 +4,8 @@ import	java.util.Map;
 
 import com.leaves.smalltiger.common.config.BaseMapper;
 import com.leaves.smalltiger.common.po.Consumer;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import com.leaves.smalltiger.consumer.vo.ConsumerInsert;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 @Mapper
@@ -50,6 +48,7 @@ public interface ConsumerMapper extends BaseMapper<Consumer> {
     @Select("SELECT * FROM consumer WHERE conName LIKE '%${msgWords}%' ORDER BY conId")
     public List<Consumer> queryConsumersByWords(@Param(value = "msgWords") String msgWords);
 
-
-    //public List<Consumer> updateConsumerById(@Param(value = "conId") int conId);
+  /*  @Insert("INSERT INTO consumer  (conId, conName, password, conAvatar, conSex, conTel, conMail) " +
+            "VALUES(588, '小强', '654', 'jhb', 1, '56465', 'asd@163.com')")
+    public List<Consumer> addConsumer(ConsumerInsert consumerInsert);*/
 }

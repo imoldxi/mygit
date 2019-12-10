@@ -2,6 +2,7 @@ package com.leaves.smalltiger.consumer.service;
 
 import com.leaves.smalltiger.common.po.Consumer;
 import com.leaves.smalltiger.common.utils.MsgResult;
+import com.leaves.smalltiger.consumer.vo.ConsumerInsert;
 import com.leaves.smalltiger.consumer.vo.ConsumerParam;
 
 public interface ConsumerService {
@@ -18,4 +19,7 @@ public interface ConsumerService {
     public MsgResult queryConsumersByWords(String msgWords,int pageNum,int pageSize );
     //修改用户信息
     public MsgResult updateConsumerById(ConsumerParam consumerParam);
+
+    //测试添加用户
+    public MsgResult addConsumer(ConsumerInsert consumerInsert);
 }
