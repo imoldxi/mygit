@@ -22,7 +22,7 @@ public class DetailController {
      * @return
      */
     @RequestMapping(value = "/queryDetails",method = RequestMethod.GET)
-    public MsgResult query(@RequestBody DetailParam detailParam){
+    public MsgResult query( DetailParam detailParam){
         log.info("前台传来的参数: 用户ID"+detailParam.getConId()+"  年份： "+detailParam.getYear()+"  月份："+detailParam.getMonth());
         MsgResult msgResult = detailService.querydetails(detailParam);
         return msgResult;

@@ -38,7 +38,7 @@ public interface DetailMapper extends BaseMapper<Detail> {
      * @param year
      * @param month
      */
-    @Select("select c.conName, d.detId, cpt.contIcon, d.detRemark, d.detSort, d.detAmount, d.detTime, cpt.contName  from consumer c, consumptiontype cpt, detail d " +
+    @Select("select c.conId, c.conName, d.detId, cpt.contIcon, d.detRemark, d.detSort, d.detAmount, d.detTime, cpt.contName  from consumer c, consumptiontype cpt, detail d " +
             "where c.conId=d.conId and d.contId=cpt.contId and MONTH(detTime)=#{month} AND YEAR(detTime)=#{year} AND c.conId=#{conId} AND d.detStatus=1")
     public List<DetailHome> queryHome(@Param("conId") int conId,
                                       @Param("year")int year,

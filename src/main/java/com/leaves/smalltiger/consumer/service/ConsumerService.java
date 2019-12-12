@@ -17,6 +17,7 @@ public interface ConsumerService {
     //##############################后台方法##################################
     //模糊查询
     public MsgResult queryConsumersByWords(String msgWords,int pageNum,int pageSize );
+
     //修改用户信息
     public MsgResult updateConsumerById(ConsumerParam consumerParam);
 

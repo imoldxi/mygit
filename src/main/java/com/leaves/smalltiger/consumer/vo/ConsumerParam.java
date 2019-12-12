@@ -12,18 +12,18 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 public class ConsumerParam {
-    private Integer conId;
+    private Integer conId;//用户id
 
-    private String conName;
+    private String conName;//用户名
 
-    private String conAvatar;
+    private String conAvatar;//用户头像
 
-    private Integer conSex;
+    private Integer conSex;//性别
 
-    private String conTel;
+    private String conTel;//电话
 
-    private String conMail;
+    private String conMail;//邮箱
 
-    private Integer conStatus;
+    private Integer conStatus;//状态
 
 }

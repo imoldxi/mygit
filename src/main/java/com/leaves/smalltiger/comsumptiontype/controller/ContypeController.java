@@ -38,4 +38,5 @@ public class ContypeController {
         MsgResult result = contypeServie.find(contName,contStatus);
         return result;
     }
+
 }
